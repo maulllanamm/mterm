@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import type { HistoryEntry } from "../types/HistoryEntry";
-import AsciiBanner from "./AsciiBanner";
 import History from "./History";
 import Loading from "./Loading";
+import TerminalInitMessage from "./TerminalInitMessage";
 import TerminalInput from "./TerminalInput";
 
 const Body = () => {
@@ -55,23 +55,7 @@ const Body = () => {
   useEffect(() => {
     const initialHistory: HistoryEntry = {
       type: "system",
-      content: (
-        <div className="space-y-4">
-          <AsciiBanner />
-          <div className="text-gray-300">
-            Welcome to my interactive portfolio terminal!
-            <br />
-            Type <span className="text-blue-400 font-semibold">'help'</span> to
-            see available commands or{" "}
-            <span className="text-blue-400 font-semibold">'ls'</span> to
-            explore.
-            <br />
-            <br />
-            <span className="text-yellow-400">💡 Pro tip:</span> Use TAB for
-            autocomplete and UP/DOWN arrows for command history
-          </div>
-        </div>
-      ),
+      content: <TerminalInitMessage />,
     };
     addToHistory(initialHistory);
   }, []);
