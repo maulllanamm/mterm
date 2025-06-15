@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import type { HistoryEntry } from "../types/HistoryEntry";
 import AsciiBanner from "./AsciiBanner";
 import History from "./History";
+import Loading from "./Loading";
 
 const Body = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -54,12 +55,7 @@ const Body = () => {
         <History entries={history} />
 
         {/* Loading indicator */}
-        {isLoading && (
-          <div className="flex items-center space-x-2 text-yellow-400">
-            <div className="animate-spin">⚡</div>
-            <span>Processing...</span>
-          </div>
-        )}
+        {isLoading && <Loading />}
 
         {/* Input Line */}
         <div className="flex items-center space-x-2">
