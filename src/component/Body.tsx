@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import AsciiBanner from "./AsciiBanner";
 
 interface HistoryEntry {
   type: "system" | "input" | "output";
@@ -22,15 +23,7 @@ const Body = () => {
       type: "system",
       content: (
         <div className="space-y-4">
-          <pre className="whitespace-pre font-mono text-sm leading-tight text-green-400 overflow-x-auto block">
-            {`
-    __  _________                  
-   /  |/  /_  __/__  _________ ___ 
-  / /|_/ / / / / _ \\/ ___/ __ '__ \\ 
- / /  / / / / /  __/ /  / / / / / /
-/_/  /_/ /_/  \\___/_/  /_/ /_/ /_/                         
-`}
-          </pre>
+          <AsciiBanner />
           <div className="text-gray-300">
             Welcome to my interactive portfolio terminal!
             <br />
