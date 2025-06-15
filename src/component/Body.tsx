@@ -14,6 +14,50 @@ const Body = () => {
   const addToHistory = (entry: HistoryEntry) => {
     setHistory((prev) => [...prev, entry]);
   };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Tab") {
+      e.preventDefault();
+      autocomplete();
+    }
+  };
+
+  const autocomplete = () => {
+    const commands = [
+      "help",
+      "ls",
+      "cat",
+      "cd",
+      "pwd",
+      "clear",
+      "whoami",
+      "date",
+      "history",
+      "skills",
+      "projects",
+      "contact",
+      "tree",
+      "grep",
+      "echo",
+    ];
+    const suggestions = commands.filter((cmd) =>
+      cmd.startsWith(currentInput.toLowerCase())
+    );
+
+    if (suggestions.length === 1) {
+      setCurrentInput(suggestions[0] + " ");
+    } else if (suggestions.length > 1) {
+      addToHistory({
+        type: "output",
+        content: (
+          <span className="text-blue-400">
+            Suggestions: {suggestions.join(", ")}
+          </span>
+        ),
+      });
+    }
+  };
+
   // Initialize terminal
   useEffect(() => {
     const initialHistory: HistoryEntry = {
@@ -59,6 +103,7 @@ const Body = () => {
             ref={inputRef}
             type="text"
             value={currentInput}
+            onKeyDown={handleKeyDown}
             onChange={(e) => setCurrentInput(e.target.value)}
             className="flex-1 bg-transparent border-none outline-none text-green-400 font-mono caret-green-400"
             autoComplete="off"
