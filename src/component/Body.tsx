@@ -3,23 +3,16 @@ import type { HistoryEntry } from "../types/HistoryEntry";
 import AsciiBanner from "./AsciiBanner";
 import History from "./History";
 import Loading from "./Loading";
+import TerminalInput from "./TerminalInput";
 
 const Body = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [currentInput, setCurrentInput] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const inputRef = useRef<HTMLInputElement | null>(null);
   const terminalRef = useRef<HTMLDivElement | null>(null);
   const addToHistory = (entry: HistoryEntry) => {
     setHistory((prev) => [...prev, entry]);
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Tab") {
-      e.preventDefault();
-      autocomplete();
-    }
   };
 
   const autocomplete = () => {
@@ -81,7 +74,6 @@ const Body = () => {
       ),
     };
     addToHistory(initialHistory);
-    inputRef.current?.focus();
   }, []);
 
   return (
@@ -90,26 +82,17 @@ const Body = () => {
       <div
         ref={terminalRef}
         className="p-6 h-screen overflow-y-auto bg-gradient-to-br from-black to-gray-900"
-        onClick={() => inputRef.current?.focus()}
       >
         {/* History */}
         <History entries={history} />
         {/* Loading indicator */}
         {isLoading && <Loading />}
         {/* Input Line */}
-        <div className="flex items-center space-x-2">
-          <span className="text-green-400 font-semibold">maulana@mterm:~$</span>
-          <input
-            ref={inputRef}
-            type="text"
-            value={currentInput}
-            onKeyDown={handleKeyDown}
-            onChange={(e) => setCurrentInput(e.target.value)}
-            className="flex-1 bg-transparent border-none outline-none text-green-400 font-mono caret-green-400"
-            autoComplete="off"
-            spellCheck="false"
-          />
-        </div>
+        <TerminalInput
+          currentInput={currentInput}
+          setCurrentInput={setCurrentInput}
+          onAutocomplete={autocomplete}
+        />
       </div>
     </>
   );
