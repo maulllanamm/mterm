@@ -16,7 +16,7 @@ const Body = () => {
   };
   // Initialize terminal
   useEffect(() => {
-    addToHistory({
+    const initialHistory: HistoryEntry = {
       type: "system",
       content: (
         <div className="space-y-4">
@@ -35,7 +35,8 @@ const Body = () => {
           </div>
         </div>
       ),
-    });
+    };
+    addToHistory(initialHistory);
     inputRef.current?.focus();
   }, []);
 
