@@ -5,7 +5,7 @@ import Loading from "./Loading";
 import TerminalInitMessage from "./TerminalInitMessage";
 import TerminalInput from "./TerminalInput";
 
-const Body = () => {
+const TerminalBody = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [currentInput, setCurrentInput] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -82,4 +82,4 @@ const Body = () => {
   );
 };
 
-export default Body;
+export default TerminalBody;
