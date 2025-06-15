@@ -6,15 +6,14 @@ import Loading from "./Loading";
 
 const Body = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
-  const [currentInput, setCurrentInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [currentInput, setCurrentInput] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
   const terminalRef = useRef<HTMLDivElement | null>(null);
   const addToHistory = (entry: HistoryEntry) => {
     setHistory((prev) => [...prev, entry]);
   };
-
   // Initialize terminal
   useEffect(() => {
     addToHistory({
@@ -37,10 +36,7 @@ const Body = () => {
         </div>
       ),
     });
-
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
+    inputRef.current?.focus();
   }, []);
 
   return (
@@ -53,10 +49,8 @@ const Body = () => {
       >
         {/* History */}
         <History entries={history} />
-
         {/* Loading indicator */}
         {isLoading && <Loading />}
-
         {/* Input Line */}
         <div className="flex items-center space-x-2">
           <span className="text-green-400 font-semibold">maulana@mterm:~$</span>
