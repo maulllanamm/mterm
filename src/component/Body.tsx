@@ -1,10 +1,7 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { HistoryEntry } from "../types/HistoryEntry";
 import AsciiBanner from "./AsciiBanner";
-
-interface HistoryEntry {
-  type: "system" | "input" | "output";
-  content: ReactNode;
-}
+import History from "./History";
 
 const Body = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -54,19 +51,7 @@ const Body = () => {
         onClick={() => inputRef.current?.focus()}
       >
         {/* History */}
-        <div className="space-y-4 mb-4">
-          {history.map((entry, index) => (
-            <div key={index}>
-              {entry.type === "input" && (
-                <div className="text-green-400">{entry.content}</div>
-              )}
-              {entry.type === "output" && (
-                <div className="text-gray-300 ml-4">{entry.content}</div>
-              )}
-              {entry.type === "system" && <div>{entry.content}</div>}
-            </div>
-          ))}
-        </div>
+        <History entries={history} />
 
         {/* Loading indicator */}
         {isLoading && (
