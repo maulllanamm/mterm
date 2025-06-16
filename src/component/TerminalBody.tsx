@@ -4,6 +4,7 @@ import History from "./History";
 import Loading from "./Loading";
 import TerminalInitMessage from "./TerminalInitMessage";
 import TerminalInput from "./TerminalInput";
+import HelpContent from "./content/HelpContent";
 
 type CommandHandler = () => React.ReactNode | null;
 
@@ -55,6 +56,7 @@ const TerminalBody = () => {
     cmd: string
   ): Promise<React.ReactNode | null> => {
     const commands: Record<string, CommandHandler> = {
+      help: () => <HelpContent />,
       clear: () => {
         clearTerminal();
         return null;
