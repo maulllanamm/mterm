@@ -3,20 +3,25 @@ import { useEffect, useRef } from "react";
 interface TerminalInputProps {
   currentInput: string;
   setCurrentInput: (value: string) => void;
-  onAutocomplete: (prefix: string) => void;
+  onExecuteCommand: () => void;
+  onAutocomplete: () => void;
 }
 
 const TerminalInput = ({
   currentInput,
   setCurrentInput,
+  onExecuteCommand,
   onAutocomplete,
 }: TerminalInputProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Tab") {
+    if (e.key === "Enter") {
       e.preventDefault();
-      onAutocomplete(currentInput);
+      onExecuteCommand();
+    } else if (e.key === "Tab") {
+      e.preventDefault();
+      onAutocomplete();
     }
   };
 
