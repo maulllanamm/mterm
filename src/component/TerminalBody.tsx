@@ -6,6 +6,7 @@ import TerminalInitMessage from "./TerminalInitMessage";
 import TerminalInput from "./TerminalInput";
 import HelpContent from "./content/HelpContent";
 import WhoamiContent from "./content/WhoamiContent";
+import ListFilesContent from "./content/ListFilesContent";
 
 type CommandHandler = () => React.ReactNode | null;
 
@@ -59,6 +60,7 @@ const TerminalBody = () => {
     const commands: Record<string, CommandHandler> = {
       help: () => <HelpContent />,
       whoami: () => <WhoamiContent />,
+      ls: () => <ListFilesContent />,
       clear: () => {
         clearTerminal();
         return null;
