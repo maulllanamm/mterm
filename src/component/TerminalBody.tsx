@@ -61,6 +61,9 @@ const TerminalBody = () => {
       help: () => <HelpContent />,
       whoami: () => <WhoamiContent />,
       ls: () => <ListFilesContent />,
+      date: () => (
+        <span className="text-gray-300">{new Date().toLocaleString()}</span>
+      ),
       clear: () => {
         clearTerminal();
         return null;
