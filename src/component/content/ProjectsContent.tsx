@@ -9,6 +9,10 @@ const ProjectsContent = () => {
             • <span className="text-yellow-400">maulllanam-api-be</span> -
             RESTful API for Maulana's profile
           </div>
+          <div>
+            • <span className="text-yellow-400">MTerm</span> - CLI Portofolio
+            Maulana
+          </div>
         </div>
       </div>
       <div className="text-gray-400">
