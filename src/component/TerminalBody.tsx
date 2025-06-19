@@ -8,6 +8,7 @@ import HelpContent from "./content/HelpContent";
 import WhoamiContent from "./content/WhoamiContent";
 import ListFilesContent from "./content/ListFilesContent";
 import ProjectsContent from "./content/ProjectsContent";
+import SkillsContent from "./content/SkillsContent";
 
 type CommandHandler = () => React.ReactNode | null;
 
@@ -63,6 +64,7 @@ const TerminalBody = () => {
       whoami: () => <WhoamiContent />,
       ls: () => <ListFilesContent />,
       projects: () => <ProjectsContent />,
+      skills: () => <SkillsContent />,
       date: () => (
         <span className="text-gray-300">{new Date().toLocaleString()}</span>
       ),
