@@ -20,7 +20,7 @@ const WhoamiContent: React.FC = () => {
 
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
   useEffect(() => {
-    const userId = "1bfd5751-4c2e-406a-a5ad-167c17e3be0d";
+    const userId = import.meta.env.VITE_USER_ID;
     const fetchUserAbout = async () => {
       try {
         const res = await fetch(`${baseUrl}/api/users/${userId}/about`);
