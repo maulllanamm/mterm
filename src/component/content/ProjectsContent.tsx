@@ -13,6 +13,10 @@ const ProjectsContent = () => {
             • <span className="text-yellow-400">MTerm</span> - CLI Portofolio
             Maulana
           </div>
+          <div>
+            • <span className="text-yellow-400">Todo List</span> - Simple React
+            Todo List
+          </div>
         </div>
       </div>
       <div className="text-gray-400">
