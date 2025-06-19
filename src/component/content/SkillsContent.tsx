@@ -1,7 +1,8 @@
-import React from "react";
-
 const SkillsContent = () => {
-  const skills = [{ name: ".NET", level: 90, color: "bg-purple-500" }];
+  const skills = [
+    { name: ".NET", level: 90, color: "bg-purple-500" },
+    { name: "PostgreSQL", level: 85, color: "bg-blue-600" },
+  ];
 
   return (
     <div className="space-y-3">
