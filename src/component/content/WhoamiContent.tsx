@@ -20,15 +20,15 @@ const WhoamiContent: React.FC = () => {
 
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
   useEffect(() => {
-    const userId = "233b68de-ba0e-4089-a795-b78776ad3dd7";
+    const userId = "1bfd5751-4c2e-406a-a5ad-167c17e3be0d";
     const fetchUserAbout = async () => {
       try {
         const res = await fetch(`${baseUrl}/api/users/${userId}/about`);
-        console.log(res);
         if (!res.ok) {
           throw new Error("Failed fetch user about");
         }
         const data: UserAbout = await res.json();
+
         setAbout(data);
       } catch (error) {
         console.log(error);
@@ -39,32 +39,30 @@ const WhoamiContent: React.FC = () => {
   }, []);
   return (
     <div className="space-y-3 text-sm">
-      <div className="text-green-400 font-semibold">👨‍💻 .NET Developer</div>
+      <div className="text-green-400 font-semibold">👨‍💻 {about?.title}</div>
       <div className="space-y-1">
         <div>
           <span className="text-blue-400">Name:</span>{" "}
-          <span className="text-gray-300">Maulana Muhammad</span>
+          <span className="text-gray-300">{about?.name}</span>
         </div>
         <div>
           <span className="text-blue-400">Role:</span>{" "}
-          <span className="text-gray-300">.NET Developer</span>
+          <span className="text-gray-300">{about?.title}</span>
         </div>
         <div>
-          <span className="text-blue-400">Focus:</span>{" "}
-          <span className="text-gray-300">
-            Building scalable APIs and distributed systems
-          </span>
+          <span className="text-blue-400">Summary:</span>{" "}
+          <span className="text-gray-300">{about?.summary}</span>
         </div>
       </div>
 
       <div>
-        <div className="text-yellow-400 mb-2">Specialization:</div>
+        <div className="text-yellow-400 mb-2">Social Media:</div>
         <div className="ml-4 text-gray-300 space-y-1">
-          <div>• RESTful API Development</div>
-          <div>• Microservices Architecture</div>
-          <div>• Database Design & Optimization</div>
-          <div>• Cloud Infrastructure (AWS/GCP)</div>
-          <div>• DevOps & CI/CD Pipelines</div>
+          {about?.socialMedias.map((data, index) => (
+            <div key={index}>
+              • {data.platform} : <a href={data.url}>{data.url}</a>
+            </div>
+          ))}
         </div>
       </div>
 
