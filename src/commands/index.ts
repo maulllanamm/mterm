@@ -2,6 +2,7 @@ import type { CommandHandler } from "../interfaces/CommandHandler";
 import { help } from "./help";
 import { ls } from "./ls";
 import { projects } from "./projects";
+import { skills } from "./skills";
 import { whoami } from "./whoami";
 
 export const commandRegistry: Record<string, CommandHandler> = {
@@ -9,4 +10,5 @@ export const commandRegistry: Record<string, CommandHandler> = {
   help,
   ls,
   projects,
+  skills,
 };
