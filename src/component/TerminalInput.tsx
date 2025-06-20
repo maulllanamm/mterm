@@ -26,6 +26,9 @@ const TerminalInput = ({
       onAutocomplete();
     } else if (e.key === "ArrowDown") {
       e.preventDefault();
+      onNavigateHistory(-1);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
       onNavigateHistory(1);
     }
   };
