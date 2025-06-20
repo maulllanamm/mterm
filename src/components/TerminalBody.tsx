@@ -53,9 +53,13 @@ const TerminalBody = () => {
   const processCommand = async (
     cmd: string
   ): Promise<React.ReactNode | null> => {
-    const command = commandRegistry[cmd];
-    if (command) {
-      return await command();
+    if (cmd === "clear" || cmd === "cls") {
+      clearTerminal();
+      return null;
+    }
+
+    if (commandRegistry[cmd]) {
+      return await commandRegistry[cmd]();
     }
 
     return (
