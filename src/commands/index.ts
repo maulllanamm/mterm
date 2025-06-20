@@ -1,10 +1,12 @@
 import type { CommandHandler } from "../interfaces/CommandHandler";
 import { help } from "./help";
 import { ls } from "./ls";
+import { projects } from "./projects";
 import { whoami } from "./whoami";
 
 export const commandRegistry: Record<string, CommandHandler> = {
   whoami,
   help,
   ls,
+  projects,
 };
