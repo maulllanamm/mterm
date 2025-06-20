@@ -1,5 +1,5 @@
 import { type FC } from "react";
-import type { HistoryEntry } from "../types/HistoryEntry";
+import type { HistoryEntry } from "../interfaces/HistoryEntry";
 
 interface HistoryProps {
   entries: HistoryEntry[];

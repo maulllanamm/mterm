@@ -1,5 +1,5 @@
-import Header from "./component/Header";
-import TerminalBody from "./component/TerminalBody";
+import Header from "./components/Header";
+import TerminalBody from "./components/TerminalBody";
 
 function MTermApp() {
   return (

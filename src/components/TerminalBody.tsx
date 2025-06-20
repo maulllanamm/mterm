@@ -1,16 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import type { HistoryEntry } from "../types/HistoryEntry";
+import type { HistoryEntry } from "../interfaces/HistoryEntry";
 import History from "./History";
 import Loading from "./Loading";
 import TerminalInitMessage from "./TerminalInitMessage";
 import TerminalInput from "./TerminalInput";
-import HelpContent from "./content/HelpContent";
-import WhoamiContent from "./content/WhoamiContent";
-import ListFilesContent from "./content/ListFilesContent";
-import ProjectsContent from "./content/ProjectsContent";
-import SkillsContent from "./content/SkillsContent";
 
-type CommandHandler = () => React.ReactNode | null;
+import { commandRegistry } from "../commands";
 
 const TerminalBody = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -59,34 +54,20 @@ const TerminalBody = () => {
   const processCommand = async (
     cmd: string
   ): Promise<React.ReactNode | null> => {
-    const commands: Record<string, CommandHandler> = {
-      help: () => <HelpContent />,
-      whoami: () => <WhoamiContent />,
-      ls: () => <ListFilesContent />,
-      projects: () => <ProjectsContent />,
-      skills: () => <SkillsContent />,
-      date: () => (
-        <span className="text-gray-300">{new Date().toLocaleString()}</span>
-      ),
-      clear: () => {
-        clearTerminal();
-        return null;
-      },
-    };
-
-    if (commands[cmd]) {
-      return commands[cmd]();
-    } else {
-      return (
-        <div>
-          <span className="text-red-400">Command not found: {cmd}</span>
-          <br />
-          <span className="text-gray-400">
-            Type 'help' to see available commands.
-          </span>
-        </div>
-      );
+    const command = commandRegistry[cmd];
+    if (command) {
+      return await command();
     }
+
+    return (
+      <div>
+        <span className="text-red-400">Command not found: {cmd}</span>
+        <br />
+        <span className="text-gray-400">
+          Type 'help' to see available commands.
+        </span>
+      </div>
+    );
   };
 
   const clearTerminal = () => {

@@ -1,5 +1,3 @@
-import React from "react";
-
 const ListFilesContent = () => {
   const files = [{ name: "about.txt", type: "file", icon: "📄" }];
 
