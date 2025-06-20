@@ -91,6 +91,11 @@ const TerminalBody = () => {
 
   const clearTerminal = () => {
     setHistory([]);
+    const initialHistory: HistoryEntry = {
+      type: "system",
+      content: <TerminalInitMessage />,
+    };
+    addToHistory(initialHistory);
   };
 
   const autocomplete = () => {
@@ -131,8 +136,6 @@ const TerminalBody = () => {
 
   const onNavigateHistory = (direction: number) => {
     const newIndex = historyIndex + direction;
-    console.log("commandHistory", commandHistory);
-    console.log("newIndex", newIndex);
     if (newIndex >= -1 && newIndex < commandHistory.length) {
       setHistoryIndex(newIndex);
       setCurrentInput(newIndex === -1 ? "" : commandHistory[newIndex]);
