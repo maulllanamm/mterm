@@ -4,7 +4,11 @@ import History from "./History";
 import Loading from "./Loading";
 import TerminalInitMessage from "./TerminalInitMessage";
 import TerminalInput from "./TerminalInput";
-
+import HelpContent from "./contents/HelpContent";
+import WhoamiContent from "./contents/WhoamiContent";
+import ListFilesContent from "./contents/ListFilesContent";
+import ProjectsContent from "./contents/ProjectsContent";
+import SkillsContent from "./contents/SkillsContent";
 import { commandRegistry } from "../commands";
 
 const TerminalBody = () => {
