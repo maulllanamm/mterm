@@ -5,6 +5,7 @@ interface TerminalInputProps {
   setCurrentInput: (value: string) => void;
   onExecuteCommand: () => void;
   onAutocomplete: () => void;
+  onNavigateHistory: (direction: number) => void;
 }
 
 const TerminalInput = ({
@@ -12,6 +13,7 @@ const TerminalInput = ({
   setCurrentInput,
   onExecuteCommand,
   onAutocomplete,
+  onNavigateHistory,
 }: TerminalInputProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -22,6 +24,9 @@ const TerminalInput = ({
     } else if (e.key === "Tab") {
       e.preventDefault();
       onAutocomplete();
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      onNavigateHistory(1);
     }
   };
 

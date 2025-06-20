@@ -17,7 +17,7 @@ const TerminalBody = () => {
   const [currentInput, setCurrentInput] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
-  const [historyIndex, setHistoryIndex] = useState(-1);
+  const [historyIndex, setHistoryIndex] = useState<number>(-1);
 
   const terminalRef = useRef<HTMLDivElement | null>(null);
   const addToHistory = (entry: HistoryEntry) => {
@@ -129,6 +129,16 @@ const TerminalBody = () => {
     }
   };
 
+  const onNavigateHistory = (direction: number) => {
+    const newIndex = historyIndex + direction;
+    console.log("commandHistory", commandHistory);
+    console.log("newIndex", newIndex);
+    if (newIndex >= -1 && newIndex < commandHistory.length) {
+      setHistoryIndex(newIndex);
+      setCurrentInput(newIndex === -1 ? "" : commandHistory[newIndex]);
+    }
+  };
+
   // Initialize terminal
   useEffect(() => {
     const initialHistory: HistoryEntry = {
@@ -155,6 +165,7 @@ const TerminalBody = () => {
           setCurrentInput={setCurrentInput}
           onAutocomplete={autocomplete}
           onExecuteCommand={executeCommand}
+          onNavigateHistory={onNavigateHistory}
         />
       </div>
     </>
