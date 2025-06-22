@@ -5,6 +5,7 @@ import Loading from "./Loading";
 import TerminalInitMessage from "./TerminalInitMessage";
 import TerminalInput from "./TerminalInput";
 import { commandRegistry } from "../commands";
+import { HistoryContent } from "./contents/HistoryContent";
 
 const TerminalBody = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -59,6 +60,8 @@ const TerminalBody = () => {
       return null;
     } else if (cmd === "pwd") {
       return <span className="text-green-400">{currentPath}</span>;
+    } else if (cmd == "history") {
+      return <HistoryContent history={commandHistory} />;
     }
 
     if (commandRegistry[cmd]) {
