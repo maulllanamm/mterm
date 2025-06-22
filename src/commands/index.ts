@@ -1,4 +1,5 @@
 import type { CommandHandler } from "../interfaces/CommandHandler";
+import { date } from "./date";
 import { help } from "./help";
 import { ls } from "./ls";
 import { projects } from "./projects";
@@ -11,4 +12,5 @@ export const commandRegistry: Record<string, CommandHandler> = {
   ls,
   projects,
   skills,
+  date,
 };
