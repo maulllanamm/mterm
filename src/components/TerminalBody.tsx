@@ -12,6 +12,7 @@ const TerminalBody = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState<number>(-1);
+  const [currentPath, setCurrentPath] = useState("/home/portfolio");
 
   const terminalRef = useRef<HTMLDivElement | null>(null);
   const addToHistory = (entry: HistoryEntry) => {
@@ -56,6 +57,8 @@ const TerminalBody = () => {
     if (cmd === "clear" || cmd === "cls") {
       clearTerminal();
       return null;
+    } else if (cmd === "pwd") {
+      return <span className="text-green-400">{currentPath}</span>;
     }
 
     if (commandRegistry[cmd]) {
