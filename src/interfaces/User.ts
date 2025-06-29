@@ -1,3 +1,5 @@
+import type { SocialMedia } from "./SocialMedia";
+
 export interface User {
   id: string;
   createdAt: string;
@@ -8,4 +10,5 @@ export interface User {
   email: string;
   phone: string;
   summary: string;
+  socialMedias: SocialMedia[];
 }
