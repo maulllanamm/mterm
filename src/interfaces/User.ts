@@ -1,3 +1,4 @@
+import type { Experience } from "./Experience";
 import type { Project } from "./Project";
 import type { Skill } from "./Skill";
 import type { SocialMedia } from "./SocialMedia";
@@ -15,4 +16,5 @@ export interface User {
   socialMedias: SocialMedia[];
   skills: Skill[];
   projects: Project[];
+  experiences: Experience[];
 }
