@@ -4,9 +4,9 @@ import History from "./History";
 import Loading from "./Loading";
 import TerminalInitMessage from "./TerminalInitMessage";
 import TerminalInput from "./TerminalInput";
-import { commandRegistry } from "../commands";
-import { HistoryContent } from "./contents/HistoryContent";
 import type { User } from "../interfaces/User";
+import HelpContent from "./contents/HelpContent";
+import type { CommandHandler } from "../interfaces/CommandHandler";
 
 const TerminalBody = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -54,31 +54,24 @@ const TerminalBody = () => {
     setIsLoading(false);
   };
 
-  const processCommand = async (
-    cmd: string
-  ): Promise<React.ReactNode | null> => {
-    if (cmd === "clear" || cmd === "cls") {
-      clearTerminal();
-      return null;
-    } else if (cmd === "pwd") {
-      return <span className="text-green-400">{currentPath}</span>;
-    } else if (cmd == "history") {
-      return <HistoryContent history={commandHistory} />;
-    }
+  const processCommand = async (cmd: string) => {
+    const commands: Record<string, CommandHandler> = {
+      help: async () => <HelpContent />,
+    };
 
-    if (commandRegistry[cmd]) {
-      return await commandRegistry[cmd]();
+    if (commands[cmd]) {
+      return commands[cmd]();
+    } else {
+      return (
+        <div>
+          <span className="text-red-400">Command not found: {cmd}</span>
+          <br />
+          <span className="text-gray-400">
+            Type 'help' to see available commands.
+          </span>
+        </div>
+      );
     }
-
-    return (
-      <div>
-        <span className="text-red-400">Command not found: {cmd}</span>
-        <br />
-        <span className="text-gray-400">
-          Type 'help' to see available commands.
-        </span>
-      </div>
-    );
   };
 
   const clearTerminal = () => {
@@ -141,7 +134,7 @@ const TerminalBody = () => {
         const data: User = await res.json();
         setUser(data);
       } catch (err) {
-        console.log("error fetch api");
+        console.log("error fetch api  ");
       } finally {
         setIsLoading(false);
       }
