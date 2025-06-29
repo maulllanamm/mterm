@@ -1,3 +1,4 @@
+import type { Project } from "./Project";
 import type { Skill } from "./Skill";
 import type { SocialMedia } from "./SocialMedia";
 
@@ -13,4 +14,5 @@ export interface User {
   summary: string;
   socialMedias: SocialMedia[];
   skills: Skill[];
+  projects: Project[];
 }
