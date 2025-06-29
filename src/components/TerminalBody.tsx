@@ -92,8 +92,6 @@ const TerminalBody = () => {
     const commands = [
       "help",
       "ls",
-      "cat",
-      "cd",
       "pwd",
       "clear",
       "whoami",
@@ -101,10 +99,7 @@ const TerminalBody = () => {
       "history",
       "skills",
       "projects",
-      "contact",
-      "tree",
-      "grep",
-      "echo",
+      "educations",
     ];
     const suggestions = commands.filter((cmd) =>
       cmd.startsWith(currentInput.toLowerCase())
