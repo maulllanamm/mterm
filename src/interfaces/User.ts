@@ -1,3 +1,4 @@
+import type { Skill } from "./Skill";
 import type { SocialMedia } from "./SocialMedia";
 
 export interface User {
@@ -11,4 +12,5 @@ export interface User {
   phone: string;
   summary: string;
   socialMedias: SocialMedia[];
+  skills: Skill[];
 }
