@@ -6,6 +6,7 @@ import TerminalInitMessage from "./TerminalInitMessage";
 import TerminalInput from "./TerminalInput";
 import { commandRegistry } from "../commands";
 import { HistoryContent } from "./contents/HistoryContent";
+import type { User } from "../interfaces/User";
 
 const TerminalBody = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -14,6 +15,7 @@ const TerminalBody = () => {
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState<number>(-1);
   const [currentPath, setCurrentPath] = useState("/home/portfolio");
+  const [user, setUser] = useState<User | null>(null);
 
   const terminalRef = useRef<HTMLDivElement | null>(null);
   const addToHistory = (entry: HistoryEntry) => {
@@ -129,11 +131,28 @@ const TerminalBody = () => {
 
   // Initialize terminal
   useEffect(() => {
+    const fetchApi = async () => {
+      const baseUrl = import.meta.env.VITE_API_BASE_URL;
+      const userId = import.meta.env.VITE_USER_ID;
+
+      try {
+        const res = await fetch(`${baseUrl}/api/users/${userId}`);
+        if (!res.ok) throw new Error("Failed to fetch user profile");
+        const data: User = await res.json();
+        setUser(data);
+      } catch (err) {
+        console.log("error fetch api");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
     const initialHistory: HistoryEntry = {
       type: "system",
       content: <TerminalInitMessage />,
     };
     addToHistory(initialHistory);
+    fetchApi();
   }, []);
 
   return (
