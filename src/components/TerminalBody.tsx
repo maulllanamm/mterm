@@ -67,6 +67,10 @@ const TerminalBody = () => {
       history: async () => <HistoryContent history={commandHistory} />,
       projects: async () => <ProjectsContent projects={user?.projects ?? []} />,
       skills: async () => <SkillsContent skills={user?.skills ?? []} />,
+      clear: async () => {
+        clearTerminal();
+        return null;
+      },
     };
 
     if (commands[cmd]) {
