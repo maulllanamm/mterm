@@ -62,7 +62,7 @@ const TerminalBody = () => {
       help: async () => <HelpContent />,
       ls: async () => <ListFilesContent />,
       history: async () => <HistoryContent history={commandHistory} />,
-      projects: async () => <ProjectsContent projects={user?.projects} />,
+      projects: async () => <ProjectsContent projects={user?.projects ?? []} />,
     };
 
     if (commands[cmd]) {
