@@ -8,6 +8,7 @@ import type { User } from "../interfaces/User";
 import HelpContent from "./contents/HelpContent";
 import type { CommandHandler } from "../interfaces/CommandHandler";
 import ListFilesContent from "./contents/ListFilesContent";
+import { HistoryContent } from "./contents/HistoryContent";
 
 const TerminalBody = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -59,6 +60,7 @@ const TerminalBody = () => {
     const commands: Record<string, CommandHandler> = {
       help: async () => <HelpContent />,
       ls: async () => <ListFilesContent />,
+      history: async () => <HistoryContent history={commandHistory} />,
     };
 
     if (commands[cmd]) {
