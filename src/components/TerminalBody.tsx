@@ -10,6 +10,9 @@ import History from "./History";
 import Loading from "./Loading";
 import TerminalInitMessage from "./TerminalInitMessage";
 import TerminalInput from "./TerminalInput";
+import type { educations } from "../commands/educations";
+import { EducationsContent } from "./contents/EducationsContent";
+import SkillsContent from "./contents/SkillsContent";
 
 const TerminalBody = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -63,6 +66,7 @@ const TerminalBody = () => {
       ls: async () => <ListFilesContent />,
       history: async () => <HistoryContent history={commandHistory} />,
       projects: async () => <ProjectsContent projects={user?.projects ?? []} />,
+      skills: async () => <SkillsContent skills={user?.skills ?? []} />,
     };
 
     if (commands[cmd]) {

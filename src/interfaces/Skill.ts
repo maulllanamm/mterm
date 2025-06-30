@@ -6,4 +6,5 @@ export interface Skill {
   userId: string;
   name: string;
   type: number;
+  level: number;
 }
