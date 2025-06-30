@@ -7,6 +7,7 @@ import TerminalInput from "./TerminalInput";
 import type { User } from "../interfaces/User";
 import HelpContent from "./contents/HelpContent";
 import type { CommandHandler } from "../interfaces/CommandHandler";
+import ListFilesContent from "./contents/ListFilesContent";
 
 const TerminalBody = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -57,6 +58,7 @@ const TerminalBody = () => {
   const processCommand = async (cmd: string) => {
     const commands: Record<string, CommandHandler> = {
       help: async () => <HelpContent />,
+      ls: async () => <ListFilesContent />,
     };
 
     if (commands[cmd]) {
