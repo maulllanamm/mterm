@@ -1,32 +1,75 @@
-const ProjectsContent = () => {
+import type { Project } from "../../interfaces/Project";
+
+interface ProjectContentProps {
+  projects: Project[];
+}
+
+const ProjectsContent: React.FC<ProjectContentProps> = ({ projects }) => {
   return (
-    <div className="space-y-3 text-sm">
-      <div className="text-green-400 font-semibold">🚀 Projects Portfolio</div>
-      <div>
-        <div className="text-blue-400 mb-2">Available projects:</div>
-        <div className="ml-4 space-y-1 text-gray-300">
-          <div>
-            • <span className="text-yellow-400">maulllanam-api-be</span> -
-            RESTful API for Maulana's profile
-          </div>
-          <div>
-            • <span className="text-yellow-400">MTerm</span> - CLI Portofolio
-            Maulana
-          </div>
-          <div>
-            • <span className="text-yellow-400">Todo List</span> - Simple React
-            Todo List
-          </div>
-        </div>
+    <div className="space-y-4 text-sm text-gray-300">
+      <div className="text-green-400 font-semibold text-base">
+        🚀 Projects Portfolio
       </div>
-      <div className="text-gray-400">
+
+      {projects.length === 0 && (
+        <div className="text-red-400">No projects available.</div>
+      )}
+
+      {projects.map((project: Project) => {
+        let techList: string[] = [];
+        try {
+          techList = JSON.parse(project.tech); // ✅ convert string to array
+        } catch (error) {
+          console.warn("Invalid tech format in project:", project.title);
+        }
+
+        return (
+          <div
+            key={project.id}
+            className="ml-4 border-l-2 border-green-500 pl-4 space-y-1"
+          >
+            <div className="font-semibold text-yellow-400">{project.title}</div>
+            <div className="text-gray-400">{project.description}</div>
+
+            {project.url && (
+              <div>
+                🔗{" "}
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 underline hover:text-blue-300"
+                >
+                  {project.url}
+                </a>
+              </div>
+            )}
+
+            {techList.length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-1">
+                {techList.map((tech, index) => (
+                  <span
+                    key={index}
+                    className="bg-gray-800 text-green-300 px-2 py-0.5 rounded-full text-xs"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      })}
+
+      <div className="text-gray-400 pt-4">
         <div>
-          <span className="text-yellow-400">Usage:</span> cat
-          projects/[project-name] for details
+          <span className="text-yellow-400">Usage:</span>{" "}
+          <span className="italic">cat projects/[project-name]</span> for
+          details
         </div>
         <div>
-          <span className="text-yellow-400">Example:</span> cat
-          projects/maulllanam-api-be
+          <span className="text-yellow-400">Example:</span>{" "}
+          <span className="italic">cat projects/maulllanam-api-be</span>
         </div>
       </div>
     </div>

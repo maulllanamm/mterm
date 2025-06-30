@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from "react";
+import type { CommandHandler } from "../interfaces/CommandHandler";
 import type { HistoryEntry } from "../interfaces/HistoryEntry";
+import type { User } from "../interfaces/User";
+import HelpContent from "./contents/HelpContent";
+import { HistoryContent } from "./contents/HistoryContent";
+import ListFilesContent from "./contents/ListFilesContent";
+import ProjectsContent from "./contents/ProjectsContent";
 import History from "./History";
 import Loading from "./Loading";
 import TerminalInitMessage from "./TerminalInitMessage";
 import TerminalInput from "./TerminalInput";
-import type { User } from "../interfaces/User";
-import HelpContent from "./contents/HelpContent";
-import type { CommandHandler } from "../interfaces/CommandHandler";
-import ListFilesContent from "./contents/ListFilesContent";
-import { HistoryContent } from "./contents/HistoryContent";
 
 const TerminalBody = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -61,6 +62,7 @@ const TerminalBody = () => {
       help: async () => <HelpContent />,
       ls: async () => <ListFilesContent />,
       history: async () => <HistoryContent history={commandHistory} />,
+      projects: async () => <ProjectsContent projects={user?.projects} />,
     };
 
     if (commands[cmd]) {
