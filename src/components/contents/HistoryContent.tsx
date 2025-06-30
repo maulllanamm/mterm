@@ -3,8 +3,6 @@ interface HistoryContentProps {
 }
 
 export const HistoryContent = ({ history }: HistoryContentProps) => {
-  console.log(history);
-
   return (
     <div className="space-y-1 text-sm">
       <div className="text-green-400 font-semibold">Command History</div>
