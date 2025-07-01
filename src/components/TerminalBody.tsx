@@ -16,6 +16,7 @@ import TerminalInput from "./TerminalInput";
 import { educations } from "../commands/educations";
 import { EducationsContent } from "./contents/EducationsContent";
 import ExperienceContent from "./contents/ExperienceContent";
+import CertificatesContent from "./contents/CertificatesContent";
 
 const TerminalBody = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -89,6 +90,9 @@ const TerminalBody = () => {
       ),
       experiences: async () => (
         <ExperienceContent experiences={user?.experiences ?? []} />
+      ),
+      certificates: async () => (
+        <CertificatesContent certificates={user?.certificates ?? []} />
       ),
     };
 
