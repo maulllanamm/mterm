@@ -13,6 +13,7 @@ import TerminalInput from "./TerminalInput";
 import type { educations } from "../commands/educations";
 import { EducationsContent } from "./contents/EducationsContent";
 import SkillsContent from "./contents/SkillsContent";
+import { DateContent } from "./contents/DateContent";
 
 const TerminalBody = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -71,6 +72,7 @@ const TerminalBody = () => {
         clearTerminal();
         return null;
       },
+      date: async () => <DateContent />,
     };
 
     if (commands[cmd]) {
