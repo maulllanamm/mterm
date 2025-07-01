@@ -13,6 +13,8 @@ import History from "./History";
 import Loading from "./Loading";
 import TerminalInitMessage from "./TerminalInitMessage";
 import TerminalInput from "./TerminalInput";
+import { educations } from "../commands/educations";
+import { EducationsContent } from "./contents/EducationsContent";
 
 const TerminalBody = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -80,6 +82,9 @@ const TerminalBody = () => {
           summary={user?.summary ?? ""}
           socialMedia={user?.socialMedias ?? []}
         />
+      ),
+      educations: async () => (
+        <EducationsContent education={user?.educations ?? []} />
       ),
     };
 

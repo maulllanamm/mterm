@@ -1,4 +1,5 @@
 import type { Certificate } from "./Certificate";
+import type { Educations } from "./Education";
 import type { Experience } from "./Experience";
 import type { Project } from "./Project";
 import type { Skill } from "./Skill";
@@ -18,5 +19,6 @@ export interface User {
   skills: Skill[];
   projects: Project[];
   experiences: Experience[];
+  educations: Educations[];
   certificates: Certificate[];
 }
