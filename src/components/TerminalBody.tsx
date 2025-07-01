@@ -2,18 +2,17 @@ import { useEffect, useRef, useState } from "react";
 import type { CommandHandler } from "../interfaces/CommandHandler";
 import type { HistoryEntry } from "../interfaces/HistoryEntry";
 import type { User } from "../interfaces/User";
+import { DateContent } from "./contents/DateContent";
 import HelpContent from "./contents/HelpContent";
 import { HistoryContent } from "./contents/HistoryContent";
 import ListFilesContent from "./contents/ListFilesContent";
 import ProjectsContent from "./contents/ProjectsContent";
+import SkillsContent from "./contents/SkillsContent";
+import WhoamiContent from "./contents/WhoamiContent";
 import History from "./History";
 import Loading from "./Loading";
 import TerminalInitMessage from "./TerminalInitMessage";
 import TerminalInput from "./TerminalInput";
-import type { educations } from "../commands/educations";
-import { EducationsContent } from "./contents/EducationsContent";
-import SkillsContent from "./contents/SkillsContent";
-import { DateContent } from "./contents/DateContent";
 
 const TerminalBody = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -73,6 +72,15 @@ const TerminalBody = () => {
         return null;
       },
       date: async () => <DateContent />,
+      whoami: async () => (
+        <WhoamiContent
+          name={user?.name ?? ""}
+          title={user?.title ?? ""}
+          email={user?.email ?? ""}
+          summary={user?.summary ?? ""}
+          socialMedia={user?.socialMedias ?? []}
+        />
+      ),
     };
 
     if (commands[cmd]) {
