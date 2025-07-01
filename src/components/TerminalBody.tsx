@@ -75,6 +75,10 @@ const TerminalBody = () => {
         clearTerminal();
         return null;
       },
+      cls: async () => {
+        clearTerminal();
+        return null;
+      },
       date: async () => <DateContent />,
       whoami: async () => (
         <WhoamiContent
@@ -126,12 +130,14 @@ const TerminalBody = () => {
       "ls",
       "pwd",
       "clear",
-      "whoami",
       "date",
       "history",
       "skills",
       "projects",
+      "whoami",
       "educations",
+      "experiences",
+      "certificates",
     ];
     const suggestions = commands.filter((cmd) =>
       cmd.startsWith(currentInput.toLowerCase())
