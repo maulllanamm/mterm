@@ -2,7 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import type { CommandHandler } from "../interfaces/CommandHandler";
 import type { HistoryEntry } from "../interfaces/HistoryEntry";
 import type { User } from "../interfaces/User";
+import CertificatesContent from "./contents/CertificatesContent";
 import { DateContent } from "./contents/DateContent";
+import { EducationsContent } from "./contents/EducationsContent";
+import ExperienceContent from "./contents/ExperienceContent";
 import HelpContent from "./contents/HelpContent";
 import { HistoryContent } from "./contents/HistoryContent";
 import ListFilesContent from "./contents/ListFilesContent";
@@ -13,10 +16,6 @@ import History from "./History";
 import Loading from "./Loading";
 import TerminalInitMessage from "./TerminalInitMessage";
 import TerminalInput from "./TerminalInput";
-import { educations } from "../commands/educations";
-import { EducationsContent } from "./contents/EducationsContent";
-import ExperienceContent from "./contents/ExperienceContent";
-import CertificatesContent from "./contents/CertificatesContent";
 
 const TerminalBody = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -128,12 +127,11 @@ const TerminalBody = () => {
     const commands = [
       "help",
       "ls",
-      "pwd",
-      "clear",
-      "date",
-      "history",
       "skills",
       "projects",
+      "clear or cls",
+      "date",
+      "history",
       "whoami",
       "educations",
       "experiences",
