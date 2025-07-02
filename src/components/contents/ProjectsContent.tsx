@@ -63,9 +63,15 @@ const ProjectsContent: React.FC<ProjectContentProps> = ({ projects }) => {
 
       {projects.length > 0 && (
         <div className="text-gray-400 pt-4">
+          <div className="pt-2">
+            <span className="text-yellow-400">Available slugs:</span>{" "}
+            <span className="text-gray-300">
+              {projects.map((p) => p.slug).join(", ")}
+            </span>
+          </div>
           <div>
             <span className="text-yellow-400">Usage:</span>{" "}
-            <a className="italic">cat projects/[project-name]</a> for details
+            <a className="italic">cat projects/&lt;slug&gt;</a> for details
           </div>
 
           <div>
