@@ -61,17 +61,20 @@ const ProjectsContent: React.FC<ProjectContentProps> = ({ projects }) => {
         );
       })}
 
-      <div className="text-gray-400 pt-4">
-        <div>
-          <span className="text-yellow-400">Usage:</span>{" "}
-          <span className="italic">cat projects/[project-name]</span> for
-          details
+      {projects.length > 0 && (
+        <div className="text-gray-400 pt-4">
+          <div>
+            <span className="text-yellow-400">Usage:</span>{" "}
+            <span className="italic">cat projects/[project-name]</span> for
+            details
+          </div>
+
+          <div>
+            <span className="text-yellow-400">Example:</span>{" "}
+            <span className="italic">cat projects/{projects[0]?.slug}</span>
+          </div>
         </div>
-        <div>
-          <span className="text-yellow-400">Example:</span>{" "}
-          <span className="italic">cat projects/maulllanam-api-be</span>
-        </div>
-      </div>
+      )}
     </div>
   );
 };
