@@ -16,6 +16,9 @@ import History from "./History";
 import Loading from "./Loading";
 import TerminalInitMessage from "./TerminalInitMessage";
 import TerminalInput from "./TerminalInput";
+import type { Project } from "../interfaces/Project";
+import { ProjectContent } from "./contents/ProjectContent";
+import { CatContent } from "./contents/CatContent";
 
 const TerminalBody = () => {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -50,8 +53,8 @@ const TerminalBody = () => {
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    const [cmd] = command.split(" ");
-    const result = await processCommand(cmd.toLocaleLowerCase());
+    const [cmd, ...args] = command.split(" ");
+    const result = await processCommand(cmd.toLocaleLowerCase(), args);
     if (result) {
       addToHistory({
         type: "output",
@@ -63,7 +66,7 @@ const TerminalBody = () => {
     setIsLoading(false);
   };
 
-  const processCommand = async (cmd: string) => {
+  const processCommand = async (cmd: string, args: string[]) => {
     const commands: Record<string, CommandHandler> = {
       help: async () => <HelpContent />,
       ls: async () => <ListFilesContent />,
@@ -78,6 +81,9 @@ const TerminalBody = () => {
         clearTerminal();
         return null;
       },
+      cat: async () => (
+        <CatContent args={args} projects={user?.projects ?? []} />
+      ),
       date: async () => <DateContent />,
       whoami: async () => (
         <WhoamiContent

@@ -65,8 +65,7 @@ const ProjectsContent: React.FC<ProjectContentProps> = ({ projects }) => {
         <div className="text-gray-400 pt-4">
           <div>
             <span className="text-yellow-400">Usage:</span>{" "}
-            <span className="italic">cat projects/[project-name]</span> for
-            details
+            <a className="italic">cat projects/[project-name]</a> for details
           </div>
 
           <div>
